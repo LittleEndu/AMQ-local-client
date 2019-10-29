@@ -154,7 +154,7 @@ namespace AnimeMusicQuiz
                     {
                         activity = new Discord.Activity
                         {
-                            Details = $"Currently in ExpandLibrary",
+                            Details = $"Currently in Expand Library",
                             State = $"Checking out '{input.songName}' by '{input.artistName}' from '{input.animeName}' [{input.typeName}]",
                             Assets =
                         {
