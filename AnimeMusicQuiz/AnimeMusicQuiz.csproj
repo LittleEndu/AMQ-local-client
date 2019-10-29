@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityManager.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Core.cs" />
-    <Compile Include="ImageManager.cs" />
-    <Compile Include="LobbyManager.cs" />
+    <Compile Include="csharp/ActivityManager.cs" />
+    <Compile Include="csharp/Constants.cs" />
+    <Compile Include="csharp/Core.cs" />
+    <Compile Include="csharp/ImageManager.cs" />
+    <Compile Include="csharp/LobbyManager.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorageManager.cs" />
-    <Compile Include="StoreManager.cs" />
+    <Compile Include="csharp/StorageManager.cs" />
+    <Compile Include="csharp/StoreManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
