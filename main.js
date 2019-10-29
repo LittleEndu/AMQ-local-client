@@ -218,6 +218,14 @@ function startup() {
         click: () => { win.reload() },
         visible: false
     }))
+    menu.append(new MenuItem({
+        label: "Clear Cache",
+        accelerator: "Shift+F5",
+        click: () => { win.webContents.session.clearCache().then(() => {console.log("Cache cleared"); win.reload();})},
+        visible: false
+    }))
+
+
     /*menu.append(new MenuItem({
         label: "Debug",
         accelerator: "F12",
