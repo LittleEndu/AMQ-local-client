@@ -264,6 +264,11 @@ function startup() {
     win.webContents.on('console-message', (event, level, message, line, sourceId) => {
         logToFile(message)
     })
+
+    win.webContents.session.on('will-download', (event, item, webContents) => {
+        event.preventDefault()
+        open(item.getURL())
+    })
 }
 
 app.on('ready', startup)
