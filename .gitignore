@@ -1,0 +1,9 @@
+dist
+yarn.lock
+AnimeMusicQuiz/csharp
+AnimeMusicQuiz/bin
+AnimeMusicQuiz/obj
+node_modules
+.vs
+.idea
+*.dll
