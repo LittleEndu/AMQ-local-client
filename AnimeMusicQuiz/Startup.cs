@@ -38,6 +38,7 @@ namespace AnimeMusicQuiz
             activityManager.OnActivityJoin += secret =>
             {
                 if (currentView == "Quiz") { return; }
+                if (lastInput.avatar == null) { return; }
                 var decoded = decodeSecret(secret);
                 if (decoded.id == -1)
                 {
@@ -122,7 +123,7 @@ namespace AnimeMusicQuiz
                             },
                             Party =
                             {
-                                Id = $"lobby id={input.lobbyId.ToString()}",
+                                Id = $"lobby id={input.lobbyId}",
                                 Size = {
                                     CurrentSize = input.currentPlayers,
                                     MaxSize = input.totalPlayers,
@@ -142,12 +143,20 @@ namespace AnimeMusicQuiz
                             Details = ((input.isSpectator) ? "Spectating" : "Playing") + ((input.gameMode == "Ranked") ? " Ranked" : ""),
                             State = $"{input.currentSongs}/{input.totalSongs} Songs",
                             Assets =
-                        {
+                            {
                                 LargeImage = largeKeyValue,
                                 LargeText = largeTextValue,
                                 SmallImage = getGameModeKey(input.gameMode),
                                 SmallText = input.gameMode
-                        }
+                            },
+                            Party =
+                            {
+                                Id = $"lobby id={input.lobbyId}",
+                                Size = {
+                                    CurrentSize = input.currentPlayers,
+                                    MaxSize = input.totalPlayers,
+                                },
+                            }
                         };
                     }
                     else if (currentView == "Expand Library" && input.songName != null)
