@@ -109,10 +109,12 @@ function discordTask() {
                 win.webContents.executeJavaScript("quiz.isSpectator").then(_isSpectator => {
                     isSpectator = _isSpectator
                 })
-                win.webContents.executeJavaScript("quiz.players").then(_players => {
-                    currentPlayers = Object.keys(_players).length
-                })
                 if (gameMode == "Ranked") {
+                    if (!currentPlayers) {
+                        win.webContents.executeJavaScript("quiz.players").then(_players => {
+                            currentPlayers = Object.keys(_players).length
+                        })
+                    }
                     totalPlayers = currentPlayers
                     lobbyId = -1
                 }
@@ -146,8 +148,8 @@ function discordTask() {
             gameMode: gameMode,
             currentSongs: currentSongs,
             totalSongs: totalSongs,
-            currentPlayers: currentPlayers ? currentPlayers : 0,
-            totalPlayers: totalPlayers ? totalPlayers : 0,
+            currentPlayers: currentPlayers ? currentPlayers : 1,
+            totalPlayers: totalPlayers ? totalPlayers : 1,
             lobbyIsPrivate: lobbyIsPrivate ? true : false,
             avatar: avatar ? avatar : null,
             isSpectator: isSpectator ? true : false,
