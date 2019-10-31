@@ -109,6 +109,13 @@ function discordTask() {
                 win.webContents.executeJavaScript("quiz.isSpectator").then(_isSpectator => {
                     isSpectator = _isSpectator
                 })
+                win.webContents.executeJavaScript("quiz.players").then(_players => {
+                    currentPlayers = Object.keys(_players).length
+                })
+                if (gameMode == "Ranked") {
+                    totalPlayers = currentPlayers
+                    lobbyId = -1
+                }
             }
             if (_view == "lobby") {
                 win.webContents.executeJavaScript('lobby.settings').then(_settings => {
@@ -131,14 +138,16 @@ function discordTask() {
             }
         })
 
+        
+
         // Using JavaScript castings in here because C# is stupid like that :/
         var payload = {
             currentView: currentView ? currentView : null,
             gameMode: gameMode,
             currentSongs: currentSongs,
             totalSongs: totalSongs,
-            currentPlayers: currentPlayers,
-            totalPlayers: totalPlayers,
+            currentPlayers: currentPlayers ? currentPlayers : 0,
+            totalPlayers: totalPlayers ? totalPlayers : 0,
             lobbyIsPrivate: lobbyIsPrivate ? true : false,
             avatar: avatar ? avatar : null,
             isSpectator: isSpectator ? true : false,
