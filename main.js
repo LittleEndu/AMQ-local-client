@@ -139,7 +139,7 @@ function discordTask() {
             totalSongs: totalSongs,
             currentPlayers: currentPlayers,
             totalPlayers: totalPlayers,
-            lobbyIsPrivate: lobbyIsPrivate,
+            lobbyIsPrivate: lobbyIsPrivate ? true : false,
             avatar: avatar ? avatar : null,
             isSpectator: isSpectator ? true : false,
             songName: songName ? songName : null,
