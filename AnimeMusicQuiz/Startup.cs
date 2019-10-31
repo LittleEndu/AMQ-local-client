@@ -47,7 +47,7 @@ namespace AnimeMusicQuiz
                 }
                 else
                 {
-                    toExecute = (decoded.spectateOnly) ? $"roomBrowser.fireSpectateGame({decoded.id}, '{decoded.password}')" : $"roomBrowser.fireJoinLobby({decoded.id}, '{decoded.password}'); console.log('tried password: {decoded.password}'); console.log('secret was: {secret}');";
+                    toExecute = (decoded.spectateOnly) ? $"roomBrowser.fireSpectateGame({decoded.id}, '{decoded.password}')" : $"roomBrowser.fireJoinLobby({decoded.id}, '{decoded.password}')";
                 }
 
             };
