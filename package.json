@@ -1,6 +1,6 @@
 {
   "name": "amq-local-client",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Local client for Anime Music Quiz that supports Discord rich presence",
   "main": "main.js",
   "scripts": {
