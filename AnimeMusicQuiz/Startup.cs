@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AnimeMusicQuiz
@@ -25,7 +26,7 @@ namespace AnimeMusicQuiz
 
         private void startDiscord()
         {
-            //Environment.SetEnvironmentVariable("DISCORD_INSTANCE_ID", "1");
+            //Environment.SetEnvironmentVariable("DISCORD_INSTANCE_ID", "0");
             discord = new Discord.Discord(Int64.Parse(clientID), (UInt64)Discord.CreateFlags.NoRequireDiscord);
             activityManager = discord.GetActivityManager();
 
@@ -46,7 +47,7 @@ namespace AnimeMusicQuiz
                 }
                 else
                 {
-                    toExecute = (decoded.spectateOnly) ? $"roomBrowser.fireSpectateGame({decoded.id}, '{decoded.password}')" : $"roomBrowser.fireJoinLobby({decoded.id}, '{decoded.password}')";
+                    toExecute = (decoded.spectateOnly) ? $"roomBrowser.fireSpectateGame({decoded.id}, '{decoded.password}')" : $"roomBrowser.fireJoinLobby({decoded.id}, '{decoded.password}'); console.log('tried password: {decoded.password}'); console.log('secret was: {secret}');";
                 }
 
             };
@@ -234,19 +235,31 @@ namespace AnimeMusicQuiz
         private string encodeSecret()
         {
             string s = (lastInput.currentView == "Quiz") ? "Q" : "L";
-            return $"{s},{lastInput.lobbyId},{lastInput.lobbyPassword}";
+            string h = BitConverter.ToString(Encoding.Unicode.GetBytes(lastInput.lobbyPassword)).Replace("-", "");
+            return $"{s}N{lastInput.lobbyId}N{h}";
         }
 
         private SecretClass decodeSecret(string secret)
         {
-            string[] seperated = secret.Split(',');
+            string[] seperated = secret.Split('N');
             return new SecretClass
             {
                 id = Int32.Parse(seperated[1]),
                 spectateOnly = seperated[0] == "Q",
-                password = String.Join(",", seperated.Skip(2))
+                password = HexHelper(seperated[2])
             };
         }
+
+        private static string HexHelper(string hex)
+        {
+            byte[] raw = new byte[hex.Length / 2];
+            for (int i = 0; i < raw.Length; i++)
+            {
+                raw[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+            }
+            return Encoding.Unicode.GetString(raw);
+        }
+
     }
 
 }

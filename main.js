@@ -235,8 +235,6 @@ function startup() {
         click: () => { win.webContents.session.clearCache().then(() => {console.log("Cache cleared"); win.reload();})},
         visible: false
     }))
-
-
     /*menu.append(new MenuItem({
         label: "Debug",
         accelerator: "F12",
