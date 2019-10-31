@@ -141,7 +141,7 @@ function discordTask() {
             totalPlayers: totalPlayers,
             lobbyIsPrivate: lobbyIsPrivate,
             avatar: avatar ? avatar : null,
-            isSpectator: isSpectator,
+            isSpectator: isSpectator ? true : false,
             songName: songName ? songName : null,
             animeName: animeName ? animeName : null,
             artistName: artistName ? artistName : null,
