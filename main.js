@@ -109,7 +109,7 @@ function discordTask() {
                 win.webContents.executeJavaScript("quiz.isSpectator").then(_isSpectator => {
                     isSpectator = _isSpectator
                 })
-                if (gameMode == "Ranked") {
+                /* if (gameMode == "Ranked") {
                     if (!currentPlayers) {
                         win.webContents.executeJavaScript("quiz.players").then(_players => {
                             currentPlayers = Object.keys(_players).length
@@ -117,7 +117,7 @@ function discordTask() {
                     }
                     totalPlayers = currentPlayers
                     lobbyId = -1
-                }
+                } */
             }
             if (_view == "lobby") {
                 win.webContents.executeJavaScript('lobby.settings').then(_settings => {
