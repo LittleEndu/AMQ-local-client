@@ -77,7 +77,7 @@ var lobbyPassword
 
 function discordTask() {
     if (win && win.webContents) {
-        win.webContents.executeJavaScript('try{viewChanger._currentView}catch{}').then(_view => {
+        win.webContents.executeJavaScript('try{viewChanger.currentView}catch{}').then(_view => {
             currentView = null
             if (!_view) { return }
             currentView = toTitleCase(_view.replace(/([a-z])([A-Z])/g, '$1 $2'))
