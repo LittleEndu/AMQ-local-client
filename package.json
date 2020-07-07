@@ -21,7 +21,7 @@
   "author": "LittleEndu",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^6.0.12"
+    "electron": "^9.1.0"
   },
   "dependencies": {
     "electron-edge-js": "12.4.1",
